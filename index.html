@@ -4,738 +4,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Brew & Bean • Artisan Coffee House | Full Portfolio Demo</title>
+  
+  <!-- External Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    :root {
-      --bg-body: #ffffff;
-      --bg-nav: rgba(255, 255, 255, 0.96);
-      --text-primary: #2d2420;
-      --text-secondary: #6b5544;
-      --card-bg: #ffffff;
-      --border-light: rgba(0, 0, 0, 0.08);
-      --shadow: rgba(0, 0, 0, 0.08);
-      --accent: #c47a4a;
-      --accent-hover: #a66035;
-      --footer-bg: #3c2317;
-      --footer-text: #d4b896;
-      --gallery-bg: #faf7f3;
-      --btn-text: white;
-      --input-bg: #ffffff;
-    }
-    body.dark {
-      --bg-body: #1a1a2e;
-      --bg-nav: rgba(20, 20, 40, 0.96);
-      --text-primary: #f0e6d8;
-      --text-secondary: #c4b5a0;
-      --card-bg: #16213e;
-      --border-light: rgba(255, 255, 255, 0.1);
-      --shadow: rgba(0, 0, 0, 0.4);
-      --accent: #e8a87c;
-      --accent-hover: #c47a4a;
-      --footer-bg: #0f0f1a;
-      --footer-text: #b8a08a;
-      --gallery-bg: #0f0f1a;
-      --btn-text: #1a1a2e;
-      --input-bg: #2a2a44;
-    }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg-body);
-      color: var(--text-primary);
-      line-height: 1.5;
-      transition: background 0.25s ease, color 0.2s ease;
-    }
-    /* navbar */
-    .navbar {
-      background: var(--bg-nav);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 4px 20px var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 0.8rem 2rem;
-    }
-    .nav-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      color: var(--accent);
-      cursor: pointer;
-    }
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-    .nav-menu a {
-      text-decoration: none;
-      color: var(--text-primary);
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-    .nav-menu a:hover, .nav-menu a.active {
-      color: var(--accent);
-    }
-    .action-group {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    .search-box {
-      display: flex;
-      align-items: center;
-      background: var(--input-bg);
-      border-radius: 48px;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--border-light);
-    }
-    .search-box:focus-within {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(196, 122, 74, 0.2);
-    }
-    .search-box input {
-      background: transparent;
-      border: none;
-      padding: 0.5rem;
-      outline: none;
-      color: var(--text-primary);
-      width: 160px;
-    }
-    .search-box button {
-      background: none;
-      border: none;
-      color: var(--accent);
-      cursor: pointer;
-    }
-    .dark-toggle {
-      background: var(--card-bg);
-      border: 1px solid var(--border-light);
-      border-radius: 40px;
-      padding: 0.45rem 1.2rem;
-      cursor: pointer;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-    .dark-toggle:hover {
-      background: var(--accent);
-      color: var(--btn-text);
-    }
-    /* hero */
-    .hero {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.7)), 
-                  url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-      background-size: cover;
-      background-position: center 30%;
-      padding: 5rem 2rem;
-    }
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .hero-text {
-      flex: 1;
-      color: white;
-    }
-    .hero-text h1 {
-      font-size: clamp(2.2rem, 5vw, 3.3rem);
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-    .highlight {
-      color: #f5bc8e;
-      border-bottom: 2px solid #e8a87c;
-    }
-    .btn-primary {
-      background: var(--accent);
-      padding: 0.8rem 2rem;
-      border-radius: 60px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-3px);
-    }
-    .hero-round {
-      width: 250px;
-      height: 250px;
-      background: url('https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&auto=format') center/cover;
-      border-radius: 50%;
-      border: 4px solid var(--accent);
-    }
-    .section {
-      padding: 5rem 2rem;
-    }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .section-header h2 {
-      font-size: clamp(2rem, 4vw, 2.7rem);
-      color: var(--accent);
-      font-weight: 700;
-    }
-    /* scroller */
-    .scroller-section {
-      margin-bottom: 4rem;
-    }
-    .scroller-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .product-scroller {
-      display: flex;
-      gap: 1.7rem;
-      overflow-x: auto;
-      padding: 1rem 0.5rem 1.8rem;
-      scroll-behavior: smooth;
-    }
-    .product-scroller::-webkit-scrollbar {
-      height: 8px;
-    }
-    .product-scroller::-webkit-scrollbar-track {
-      background: var(--border-light);
-      border-radius: 10px;
-    }
-    .product-scroller::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 10px;
-    }
-    .scroller-card {
-      min-width: 270px;
-      background: var(--card-bg);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 12px 24px var(--shadow);
-      transition: transform 0.25s ease;
-    }
-    .scroller-card:hover {
-      transform: translateY(-6px);
-    }
-    .scroller-img {
-      height: 170px;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.5s;
-    }
-    .scroller-card:hover .scroller-img {
-      transform: scale(1.03);
-    }
-    .scroll-btn {
-      background: var(--accent);
-      border: none;
-      padding: 0.5rem 1.7rem;
-      border-radius: 40px;
-      font-weight: 600;
-      color: white;
-      cursor: pointer;
-    }
-    /* ===== FIXED MENU GRID - PROPER BUTTON ALIGNMENT ===== */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .menu-card {
-      background: var(--card-bg);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 8px 20px var(--shadow);
-      transition: transform 0.25s;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .menu-card:hover {
-      transform: translateY(-6px);
-    }
-    .menu-card-image {
-      height: 220px;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.4s ease;
-    }
-    .menu-card:hover .menu-card-image {
-      transform: scale(1.03);
-    }
-    .menu-card-content {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .menu-card-content h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-    .menu-card-content p {
-      color: var(--text-secondary);
-      margin-bottom: 0.75rem;
-      flex: 1;
-    }
-    .price {
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 1.3rem;
-      margin: 0.5rem 0;
-    }
-    /* ORDER BUTTON - CLEAN AND ALIGNED */
-    .order-btn {
-      margin-top: 1rem;
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      padding: 0.75rem 0;
-      border-radius: 48px;
-      font-weight: 700;
-      width: 100%;
-      transition: all 0.2s;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .order-btn:hover {
-      background: var(--accent);
-      color: var(--btn-text);
-    }
-    /* gallery */
-    .gallery-section {
-      background: var(--gallery-bg);
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-    .gallery-item {
-      aspect-ratio: 1 / 1;
-      background-size: cover;
-      background-position: center;
-      border-radius: 28px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(3px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 2rem;
-      color: white;
-    }
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.92);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 20px;
-    }
-    /* testimonials */
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
-    .testimonial-card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 1.6rem;
-      text-align: center;
-      box-shadow: 0 10px 22px var(--shadow);
-    }
-    .stars {
-      color: #FFB347;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-    }
-    /* about & contact */
-    .about-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                  url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=2047&q=80');
-      background-size: cover;
-      background-attachment: fixed;
-      color: white;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-    }
-    .feature-tag {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      display: inline-block;
-      margin: 0.3rem;
-      font-size: 0.85rem;
-    }
-    .contact-form {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 1.5rem;
-      border-radius: 1.2rem;
-      margin-top: 1.5rem;
-    }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.4rem 0;
-      border-radius: 40px;
-      border: none;
-      font-family: inherit;
-      background: rgba(255,255,255,0.9);
-    }
-    footer {
-      background: var(--footer-bg);
-      color: var(--footer-text);
-      text-align: center;
-      padding: 2rem;
-    }
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--accent);
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 999;
-      border: none;
-      color: white;
-    }
-    @media (max-width: 768px) {
-      .hamburger { display: block; }
-      .nav-menu { display: none; width: 100%; flex-direction: column; background: var(--bg-nav); padding: 1rem; border-radius: 20px; }
-      .nav-menu.show { display: flex; }
-      .action-group { width: 100%; justify-content: space-between; }
-      .hero-round { width: 180px; height: 180px; }
-      .section { padding: 3rem 1rem; }
-      .menu-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="logo"><i class="fas fa-mug-hot"></i> Brew & Bean</div>
-    <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#menu" class="nav-link">Menu</a></li>
-      <li><a href="#gallery" class="nav-link">Gallery</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <div class="action-group">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search menu...">
-        <button id="searchBtn"><i class="fas fa-search"></i></button>
-      </div>
-      <button class="dark-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> Dark</button>
-    </div>
-  </div>
-</nav>
-
-<section id="home" class="hero">
-  <div class="hero-container">
-    <div class="hero-text">
-      <h1>Where every <span class="highlight">sip</span> feels like home</h1>
-      <p>Handcrafted coffee, fresh pastries, and a cozy atmosphere.</p>
-      <a href="#menu" class="btn-primary"><i class="fas fa-mug-hot"></i> View Menu</a>
-    </div>
-    <div class="hero-round"></div>
-  </div>
-</section>
-
-<section id="menu" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Signature Menu</h2>
-      <p>Freshly brewed daily</p>
-    </div>
-
-    <!-- SCROLLER -->
-    <div class="scroller-section">
-      <div class="scroller-title">
-        <h3><i class="fas fa-fire"></i> Trending Now</h3>
-        <p>← scroll →</p>
-      </div>
-      <div class="product-scroller" id="productScroller"></div>
-      <div class="scroll-controls" style="display:flex; justify-content:center; gap:1rem; margin-top:0.8rem;">
-        <button class="scroll-btn" id="scrollLeftBtn"><i class="fas fa-arrow-left"></i> Left</button>
-        <button class="scroll-btn" id="scrollRightBtn">Right <i class="fas fa-arrow-right"></i></button>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo"><i class="fas fa-mug-hot"></i> Brew & Bean</div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="action-group">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search menu...">
+          <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        <button class="dark-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> Dark</button>
       </div>
     </div>
+  </nav>
 
-    <!-- MENU GRID -->
-    <div class="menu-grid" id="menuGrid"></div>
-  </div>
-</section>
-
-<section id="gallery" class="section gallery-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Cafe Moments</h2>
-      <p>Click any image to view larger</p>
-    </div>
-    <div class="gallery-grid" id="galleryGrid"></div>
-  </div>
-</section>
-<div id="lightbox" class="lightbox"><img id="lightboxImage" src="" alt="Enlarged view"></div>
-
-<!-- ABOUT + CONTACT -->
-<section id="about" class="about-section section">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <h3 style="color: #e8a87c; font-size: 2rem;">Our Story</h3>
-        <p style="margin: 1.5rem 0;">Brew & Bean House was born from a simple idea: great coffee brings people together. We source our beans from sustainable farms, roast them with care, and serve every cup with a smile.</p>
-        <div><span class="feature-tag">📶 Free Wi-Fi</span><span class="feature-tag">🐾 Pet Friendly</span><span class="feature-tag">🔥 Cozy Fireplace</span><span class="feature-tag">🌿 Outdoor Seating</span></div>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Where every <span class="highlight">sip</span> feels like home</h1>
+        <p>Handcrafted coffee, fresh pastries, and a cozy atmosphere.</p>
+        <a href="#menu" class="btn-primary"><i class="fas fa-mug-hot"></i> View Menu</a>
       </div>
-      <div id="contact">
-        <h3 style="color: #e8a87c; font-size: 1.8rem;">Find Us</h3>
-        <p><i class="fas fa-map-marker-alt"></i> 221B Baker Street, London NW1 6XE, United Kingdom (Demo Address)</p>
-        <p><i class="fas fa-phone"></i> (+44) 20 7946 0138</p>
-        <p><i class="fas fa-envelope"></i> hello@brewandbean.demo</p>
-        <div class="contact-form">
-          <h4>Send us a message</h4>
-          <form action="#" method="post">
-            <div class="form-group"><input type="text" name="name" placeholder="Your name" required></div>
-            <div class="form-group"><input type="email" name="email" placeholder="Email address" required></div>
-            <div class="form-group"><textarea name="message" rows="3" placeholder="Your message" required></textarea></div>
-            <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Send Message</button>
-          </form>
+      <div class="hero-round"></div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Signature Menu</h2>
+        <p>Freshly brewed daily</p>
+      </div>
+
+      <!-- Trending Scroller -->
+      <div class="scroller-section">
+        <div class="scroller-title">
+          <h3><i class="fas fa-fire"></i> Trending Now</h3>
+          <p>← scroll →</p>
+        </div>
+        <div class="product-scroller" id="productScroller"></div>
+        <div class="scroll-controls">
+          <button class="scroll-btn" id="scrollLeftBtn"><i class="fas fa-arrow-left"></i> Left</button>
+          <button class="scroll-btn" id="scrollRightBtn">Right <i class="fas fa-arrow-right"></i></button>
         </div>
       </div>
+
+      <!-- Full Menu Grid -->
+      <div class="menu-grid" id="menuGrid"></div>
     </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Cafe Moments</h2>
+        <p>Click any image to view larger</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+  
+  <!-- Lightbox Overlay -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightboxImage" src="" alt="Enlarged view">
   </div>
-</section>
 
-<footer>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-  </div>
-  <p>© 2026 Brew & Bean Coffee House</p>
-</footer>
-<button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
-
-<script>
-  (function(){
-    const menuData = [
-      { name: "Classic Latte", description: "Smooth espresso with steamed milk.", price: "4.50", image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=500" },
-      { name: "Butter Croissant", description: "Flaky, golden, baked fresh.", price: "3.80", image: "https://images.unsplash.com/photo-1612366747681-e4ca6992b1e9?w=500" },
-      { name: "Caramel Macchiato", description: "Vanilla, caramel, espresso.", price: "5.20", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500" },
-      { name: "Matcha Latte", description: "Japanese matcha, creamy oat milk.", price: "5.00", image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500" },
-      { name: "Blueberry Muffin", description: "Wild blueberries, streusel top.", price: "4.20", image: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=500" },
-      { name: "Chocolate Cookie", description: "Belgian chocolate chunks.", price: "3.50", image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500" }
-    ];
-    const scrollerData = [
-      { name: "Classic Latte", price: "4.50", image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=500" },
-      { name: "Butter Croissant", price: "3.80", image: "https://images.unsplash.com/photo-1612366747681-e4ca6992b1e9?w=500" },
-      { name: "Caramel Macchiato", price: "5.20", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500" },
-      { name: "Matcha Latte", price: "5.00", image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=500" },
-      { name: "Iced Latte", price: "4.80", image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500" },
-      { name: "Mocha Frappe", price: "6.00", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500" }
-    ];
-    const galleryUrls = [
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
-      "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800",
-      "https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800",
-      "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800"
-    ];
-
-    function renderMenu(filter = "") {
-      const container = document.getElementById("menuGrid");
-      if (!container) return;
-      const term = filter.toLowerCase().trim();
-      const filtered = menuData.filter(i => term === "" || i.name.toLowerCase().includes(term));
-      container.innerHTML = filtered.map(item => `
-        <div class="menu-card">
-          <div class="menu-card-image" style="background-image: url('${item.image}');"></div>
-          <div class="menu-card-content">
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <div class="price">$${item.price}</div>
-            <button class="order-btn" data-item="${item.name} - $${item.price}"><i class="fas fa-shopping-cart"></i> Order Now</button>
+  <!-- About & Contact Section -->
+  <section id="about" class="about-section section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <h3 class="section-title-alt">Our Story</h3>
+          <p class="about-text">Brew & Bean House was born from a simple idea: great coffee brings people together. We source our beans from sustainable farms, roast them with care, and serve every cup with a smile.</p>
+          <div class="tags-container">
+            <span class="feature-tag">📶 Free Wi-Fi</span>
+            <span class="feature-tag">🐾 Pet Friendly</span>
+            <span class="feature-tag">🔥 Cozy Fireplace</span>
+            <span class="feature-tag">🌿 Outdoor Seating</span>
           </div>
         </div>
-      `).join('');
-      document.querySelectorAll('.order-btn').forEach(btn => {
-        btn.addEventListener('click', () => alert(`🛒 Demo: "${btn.getAttribute('data-item')}" added.\nFull admin panel manages real orders.`));
-      });
-    }
-
-    function renderScroller() {
-      const scrollerDiv = document.getElementById("productScroller");
-      if (!scrollerDiv) return;
-      scrollerDiv.innerHTML = scrollerData.map(item => `
-        <div class="scroller-card">
-          <div class="scroller-img" style="background-image: url('${item.image}');"></div>
-          <div class="scroller-content" style="padding:1rem;">
-            <h4>${item.name}</h4>
-            <div class="price">$${item.price}</div>
+        <div id="contact">
+          <h3 class="section-title-alt smaller-title">Find Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 221B Baker Street, London NW1 6XE, United Kingdom (Demo Address)</p>
+          <p><i class="fas fa-phone"></i> (+44) 20 7946 0138</p>
+          <p><i class="fas fa-envelope"></i> hello@brewandbean.demo</p>
+          <div class="contact-form">
+            <h4>Send us a message</h4>
+            <form action="#" method="post">
+              <div class="form-group"><input type="text" name="name" placeholder="Your name" required></div>
+              <div class="form-group"><input type="email" name="email" placeholder="Email address" required></div>
+              <div class="form-group"><textarea name="message" rows="3" placeholder="Your message" required></textarea></div>
+              <button type="submit" class="btn-primary full-width-btn">Send Message</button>
+            </form>
           </div>
         </div>
-      `).join('');
-    }
+      </div>
+    </div>
+  </section>
 
-    function renderGallery() {
-      const galleryDiv = document.getElementById("galleryGrid");
-      if (!galleryDiv) return;
-      galleryDiv.innerHTML = galleryUrls.map(url => `
-        <div class="gallery-item" data-image="${url}" style="background-image: url('${url}');">
-          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-        </div>
-      `).join('');
-      const items = document.querySelectorAll('.gallery-item');
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightboxImage');
-      items.forEach(el => {
-        el.addEventListener('click', () => {
-          lightboxImg.src = el.getAttribute('data-image');
-          lightbox.style.display = 'flex';
-        });
-      });
-      lightbox.addEventListener('click', () => lightbox.style.display = 'none');
-    }
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>© 2026 Brew & Bean Coffee House</p>
+  </footer>
 
-    // Search
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    function handleSearch() { renderMenu(searchInput?.value || ""); }
-    searchBtn?.addEventListener('click', handleSearch);
-    searchInput?.addEventListener('keyup', (e) => { if (e.key === 'Enter') handleSearch(); });
+  <!-- Global UI Utilities -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-    // Scroller buttons
-    const scrollerEl = document.getElementById('productScroller');
-    document.getElementById('scrollLeftBtn')?.addEventListener('click', () => scrollerEl?.scrollBy({ left: -280, behavior: 'smooth' }));
-    document.getElementById('scrollRightBtn')?.addEventListener('click', () => scrollerEl?.scrollBy({ left: 280, behavior: 'smooth' }));
-
-    // Dark mode
-    const darkToggle = document.getElementById('darkModeToggle');
-    if (darkToggle) {
-      if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-      darkToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-      });
-    }
-
-    // Mobile menu
-    const hamburger = document.getElementById('hamburgerBtn');
-    const navMenu = document.getElementById('navMenu');
-    hamburger?.addEventListener('click', () => navMenu?.classList.toggle('show'));
-    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu?.classList.remove('show')));
-
-    // Back to top
-    const backBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
-    });
-    backBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Active nav
-    const sections = document.querySelectorAll('section[id]');
-    function updateActive() {
-      let current = '';
-      const scrollPos = window.scrollY + 110;
-      sections.forEach(sec => {
-        const top = sec.offsetTop, bottom = top + sec.offsetHeight;
-        if (scrollPos >= top && scrollPos < bottom) current = sec.getAttribute('id');
-      });
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
-      });
-    }
-    window.addEventListener('scroll', updateActive);
-    updateActive();
-
-    renderMenu();
-    renderScroller();
-    renderGallery();
-  })();
-</script>
+  <!-- Application Logic -->
+  <script src="app.js"></script>
 </body>
 </html>
